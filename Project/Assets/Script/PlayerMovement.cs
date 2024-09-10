@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public float speed = 12f;
+    public float speed = 12f, sprintSpeed = 24f;
     public float jumpHeight = 4f;
     public float gravity = -9.81f;
 
@@ -35,7 +35,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Move
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            controller.Move(move * sprintSpeed * Time.deltaTime);
+        }
+        else
+            controller.Move(move * speed * Time.deltaTime);
 
         //Jump
         if(Input.GetButtonDown("Jump") && isGrounded)
