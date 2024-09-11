@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GasTank
   - Target
+  - Concrete
   - Metal
   - ExplosiveBarrel
   layers:
@@ -15,21 +16,21 @@ TagManager:
   - 
   - Water
   - UI
-  - FPS View
+  - 
+  - 
+  - 
+  - FPSView
   - Character
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 

@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: d2f6a4ff1671b30488ea0420d2072807
+  productGUID: 4f50f02597b297e4c9f5358073789c3d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -752,12 +752,12 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 36453f72-ecb0-4971-90df-566c48187f5c
+  cloudProjectId: a8c53904-7292-41bb-a2e3-6ae91e35db5e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Project 2024-09-09_20-18-29
+  projectName: Project 2024-09-11_15-36-46
   organizationId: sowyzz
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
