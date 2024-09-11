@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace InfimaGames.LowPolyShooterPack
 {
-    [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
+    [RequireComponent(typeof(Rigidbody), typeof(CharacterController))]
     public class Movement : MovementBehaviour
     {
         #region FIELDS SERIALIZED
@@ -37,13 +37,7 @@ namespace InfimaGames.LowPolyShooterPack
         #region PROPERTIES
 
         //Velocity.
-        private Vector3 Velocity
-        {
-            //Getter.
-            get => rigidBody.velocity;
-            //Setter.
-            set => rigidBody.velocity = value;
-        }
+        private Vector3 Velocity;
 
         #endregion
 
@@ -53,10 +47,21 @@ namespace InfimaGames.LowPolyShooterPack
         /// Attached Rigidbody.
         /// </summary>
         private Rigidbody rigidBody;
+        private Vector3 BodyVelocity
+        {
+            //Getter.
+            get => rigidBody.velocity;
+            //Setter.
+            set => rigidBody.velocity = value;
+        }
         /// <summary>
         /// Attached CapsuleCollider.
         /// </summary>
-        private CapsuleCollider capsule;
+        private CharacterController controller;
+
+        public Transform groundCheck;
+        public float groundDistance = 0.4f;
+        public LayerMask groundMask;
         /// <summary>
         /// Attached AudioSource.
         /// </summary>
@@ -65,7 +70,7 @@ namespace InfimaGames.LowPolyShooterPack
         /// <summary>
         /// True if the character is currently grounded.
         /// </summary>
-        private bool grounded;
+        bool grounded;
 
         /// <summary>
         /// Player Character.
@@ -100,8 +105,9 @@ namespace InfimaGames.LowPolyShooterPack
             //Rigidbody Setup.
             rigidBody = GetComponent<Rigidbody>();
             rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-            //Cache the CapsuleCollider.
-            capsule = GetComponent<CapsuleCollider>();
+            
+            //Cache the CharacterCntroller.
+            controller = GetComponent<CharacterController>();
 
             //Audio Source Setup.
             audioSource = GetComponent<AudioSource>();
@@ -112,36 +118,13 @@ namespace InfimaGames.LowPolyShooterPack
         /// Checks if the character is on the ground.
         private void OnCollisionStay()
         {
-            //Bounds.
-            Bounds bounds = capsule.bounds;
-            //Extents.
-            Vector3 extents = bounds.extents;
-            //Radius.
-            float radius = extents.x - 0.01f;
-            
-            //Cast. This checks whether there is indeed ground, or not.
-            Physics.SphereCastNonAlloc(bounds.center, radius, Vector3.down,
-                groundHits, extents.y - radius * 0.5f, ~0, QueryTriggerInteraction.Ignore);
-            
-            //We can ignore the rest if we don't have any proper hits.
-            if (!groundHits.Any(hit => hit.collider != null && hit.collider != capsule)) 
-                return;
-            
-            //Store RaycastHits.
-            for (var i = 0; i < groundHits.Length; i++)
-                groundHits[i] = new RaycastHit();
-
-            //Set grounded. Now we know for sure that we're grounded.
-            grounded = true;
+            // grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         }
 			
         protected override void FixedUpdate()
         {
             //Move.
             MoveCharacter();
-            
-            //Unground.
-            grounded = false;
         }
 
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
@@ -177,24 +160,21 @@ namespace InfimaGames.LowPolyShooterPack
                 movement *= speedWalking;
             }
 
-            //World space velocity calculation. This allows us to add it to the rigidbody's velocity properly.
             movement = transform.TransformDirection(movement);
-
-            movement.y = Velocity.y;
-            movement.y += gravity * Time.deltaTime;
-            if(grounded && movement.y < 0.0f)
-            {
-                //Reset Y Velocity.
-                movement.y = -2.0f;
-            }
-            if(grounded && frameInput.z > 0.0f){
-                movement.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-            }
-
-            #endregion
+            controller.Move(movement * Time.deltaTime);
+            grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
             
-            //Update Velocity.
-            Velocity = new Vector3(movement.x, movement.y, movement.z);
+            if (grounded && Velocity.y < 0) 
+                Velocity.y = -2f;     
+
+            Velocity.y += gravity * Time.deltaTime;
+
+            if (grounded && frameInput.z > 0)
+                Velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            controller.Move(Velocity * Time.deltaTime);
+            BodyVelocity = new Vector3(movement.x, 0.0f, movement.z);
+            #endregion
         }
 
         /// <summary>

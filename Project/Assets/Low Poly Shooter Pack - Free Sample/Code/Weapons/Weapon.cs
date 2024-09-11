@@ -202,7 +202,10 @@ namespace InfimaGames.LowPolyShooterPack
         public override void Reload()
         {
             if(ammunitionHaving == 0)
+            {
+                Debug.LogWarning("No ammunition to reload with!");
                 return;
+            }      
 
             //Play Reload Animation.
             animator.Play(HasAmmunition() ? "Reload" : "Reload Empty", 0, 0.0f);
