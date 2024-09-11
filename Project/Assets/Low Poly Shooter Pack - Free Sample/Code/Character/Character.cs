@@ -843,7 +843,6 @@ namespace InfimaGames.LowPolyShooterPack
 		{
 			//Notify the weapon to fill the ammunition by the amount.
 			if(equippedWeapon != null)
-				Debug.Log("Filling ammunition by " + amount + " bullets.");
 				equippedWeapon.FillAmmunition(amount);
 		}
 		
