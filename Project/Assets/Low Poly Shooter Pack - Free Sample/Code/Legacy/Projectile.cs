@@ -22,6 +22,10 @@ public class Projectile : MonoBehaviour {
 	public Transform [] dirtImpactPrefabs;
 	public Transform []	concreteImpactPrefabs;
 
+	[Header("Damage")]
+	[Tooltip("How much damage does the bullet do?")]
+	public int damage = 40;
+
 	private void Start ()
 	{
 		//Grab the game mode service, we need it to access the player character!
@@ -73,6 +77,22 @@ public class Projectile : MonoBehaviour {
 			Instantiate (bloodImpactPrefabs [Random.Range 
 				(0, bloodImpactPrefabs.Length)], transform.position, 
 				Quaternion.LookRotation (collision.contacts [0].normal));
+			//Destroy bullet object
+			Destroy(gameObject);
+		}
+
+		//If bullet collides with "Zombie" tag
+		if (collision.transform.tag == "Zombie") 
+		{
+			//Instantiate random impact prefab from array
+			Instantiate (bloodImpactPrefabs [Random.Range 
+				(0, bloodImpactPrefabs.Length)], transform.position, 
+				Quaternion.LookRotation (collision.contacts [0].normal));
+			//Get the zombie script from the collided object
+			Zombie zombie = collision.transform.gameObject.GetComponent<Zombie>();
+			//Call the "TakeDamage" function from the zombie script
+			if(zombie != null)
+				zombie.TakeDamage(damage);
 			//Destroy bullet object
 			Destroy(gameObject);
 		}

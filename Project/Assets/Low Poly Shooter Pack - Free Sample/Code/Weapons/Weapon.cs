@@ -104,6 +104,8 @@ namespace InfimaGames.LowPolyShooterPack
 
         public int ammunitionHaving = 100;
 
+        public int weaponDamage = 40;
+
         #region Attachment Behaviours
         
         /// <summary>
@@ -242,6 +244,10 @@ namespace InfimaGames.LowPolyShooterPack
                 
             //Spawn projectile from the projectile spawn point.
             GameObject projectile = Instantiate(prefabProjectile, muzzleSocket.position, rotation);
+            //Set the damage of the projectile.
+            Projectile projectileComponent = projectile.GetComponent<Projectile>();
+            if(projectileComponent != null)
+                projectileComponent.damage = weaponDamage;
             //Add velocity to the projectile.
             projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileImpulse;   
         }

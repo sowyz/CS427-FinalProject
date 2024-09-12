@@ -749,7 +749,7 @@ MonoBehaviour:
   audioClipRunning: {fileID: 8300000, guid: d2add02f58e61e640aba3ae9110591cb, type: 3}
   speedWalking: 4
   speedRunning: 6.8
-  groundCheck: {fileID: 746339098742437325}
+  groundCheck: {fileID: 2748913124992463393}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
