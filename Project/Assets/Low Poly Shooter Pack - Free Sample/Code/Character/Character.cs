@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -151,6 +152,8 @@ namespace InfimaGames.LowPolyShooterPack
 		/// True if the game cursor is locked! Used when pressing "Escape" to allow developers to more easily access the editor.
 		/// </summary>
 		private bool cursorLocked;
+
+		public int health = 100;
 
 		#endregion
 
@@ -872,6 +875,30 @@ namespace InfimaGames.LowPolyShooterPack
 			holstering = false;
 		}
 
+		#endregion
+
+		#region HEALTH
+		public void TakeDamage(int damage)
+		{
+			health -= damage;
+			if (health <= 0)
+			{
+				health = 0;
+				//Die
+			}
+			else
+			{
+				//Damaged
+			}
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.CompareTag("ZombieAttack"))
+			{
+				TakeDamage(other.gameObject.GetComponent<ZombieAttack>().damage);
+			}
+		}
 		#endregion
 
 		#endregion
