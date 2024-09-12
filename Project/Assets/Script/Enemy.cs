@@ -22,19 +22,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        UpdateAnimaton();
-    }
-
-    private void UpdateAnimaton()
-    {
-        if(navMeshAgent.velocity.magnitude > 0.1f)
-        {
-            anim.SetBool("isWalking", true);
-        }
-        else
-        {
-            anim.SetBool("isWalking", false);
-        }
+    
     }
 
     public void TakeDamage(int damage)
@@ -56,5 +44,18 @@ public class Enemy : MonoBehaviour
         {
             anim.SetTrigger("Damaged");
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Draw attack range
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2f);
+        // Draw chasing range
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 15f);
+        // Draw detection range
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, 10f);
     }
 }
