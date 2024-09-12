@@ -13,6 +13,7 @@ TagManager:
   - Blood
   - Enemy
   - Waypoint
+  - ZombieAttack
   layers:
   - Default
   - TransparentFX

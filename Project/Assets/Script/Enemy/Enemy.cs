@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
 
+    public bool isDead = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if(health <= 0)
         {
+            isDead = true;
             int random = Random.Range(0, 2);
             if(random == 0)
             {

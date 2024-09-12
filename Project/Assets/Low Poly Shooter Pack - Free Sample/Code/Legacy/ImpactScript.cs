@@ -16,10 +16,15 @@ public class ImpactScript : MonoBehaviour {
 		StartCoroutine (DespawnTimer ());
 
 		//Get a random impact sound from the array
-		audioSource.clip = impactSounds
-			[Random.Range(0, impactSounds.Length)];
-		//Play the random impact sound
-		audioSource.Play();
+		if (impactSounds.Length > 0)
+		{
+			audioSource.clip = impactSounds
+				[Random.Range(0, impactSounds.Length)];
+
+			//Play the random impact sound
+			if (audioSource.clip != null)
+				audioSource.Play();
+		}		
 	}
 	
 	private IEnumerator DespawnTimer() {

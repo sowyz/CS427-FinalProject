@@ -91,7 +91,7 @@ public class Projectile : MonoBehaviour {
 			//Get the zombie script from the collided object
 			Enemy enemy = collision.transform.gameObject.GetComponent<Enemy>();
 			//Call the "TakeDamage" function from the zombie script
-			if(enemy != null)
+			if(enemy != null && !enemy.isDead)
 				enemy.TakeDamage(damage);
 			//Destroy bullet object
 			Destroy(gameObject);
