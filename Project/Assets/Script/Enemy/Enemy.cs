@@ -13,12 +13,24 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent navMeshAgent;
 
     public bool isDead = false;
+    public enum EnemyType
+    {
+        Zombie,
+    }
+    public EnemyType enemyType;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     private void Start()
     {
         anim = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        audioSource = enemyType switch
+        {
+            EnemyType.Zombie => SoundManager.instance.zombieAudioSource,
+            _ => null
+        };
     }
 
     // Update is called once per frame
@@ -42,9 +54,21 @@ public class Enemy : MonoBehaviour
             {
                 anim.SetTrigger("Die2");
             }
+            
+            if (audioSource != null)
+            {
+                audioSource.clip = SoundManager.instance.zombieDie;
+                audioSource.Play();
+            }
         }
         else
         {
+            if (audioSource != null)
+            {
+                audioSource.clip = SoundManager.instance.zombieHit;
+                audioSource.Play();
+            }
+
             anim.SetTrigger("Damaged");
         }
     }

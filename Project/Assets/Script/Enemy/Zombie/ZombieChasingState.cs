@@ -40,6 +40,12 @@ public class ZombieChasingState : StateMachineBehaviour
         {
             animator.SetBool("isAttacking", true);
         }
+
+        // Play sound
+        if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+        {
+            SoundManager.instance.zombieAudioSource.PlayOneShot(SoundManager.instance.zombieChase);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -47,5 +53,7 @@ public class ZombieChasingState : StateMachineBehaviour
     {
         // Stop moving
         navMeshAgent.SetDestination(navMeshAgent.transform.position);
+
+        SoundManager.instance.zombieAudioSource.Stop();
     }
 }

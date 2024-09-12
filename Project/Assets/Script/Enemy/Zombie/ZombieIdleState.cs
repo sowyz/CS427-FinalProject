@@ -34,12 +34,19 @@ public class ZombieIdleState : StateMachineBehaviour
         {
             animator.SetBool("isChasing", true);
         }
+
+        // Play sound
+        if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+        {
+            SoundManager.instance.zombieAudioSource.clip = SoundManager.instance.zombieIdle;
+            SoundManager.instance.zombieAudioSource.PlayDelayed(1f);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+       SoundManager.instance.zombieAudioSource.Stop();
     }
 
 

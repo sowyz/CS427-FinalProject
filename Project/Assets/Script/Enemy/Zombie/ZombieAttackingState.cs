@@ -28,12 +28,18 @@ public class ZombieAttackingState : StateMachineBehaviour
         {
             animator.SetBool("isAttacking", false);
         }
+
+        // Play sound
+        if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+        {
+            SoundManager.instance.zombieAudioSource.PlayOneShot(SoundManager.instance.zombieAttack);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
+        SoundManager.instance.zombieAudioSource.Stop();
     }
 
     private void LookAtPlayer()
