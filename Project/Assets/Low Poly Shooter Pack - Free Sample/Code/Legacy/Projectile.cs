@@ -82,17 +82,17 @@ public class Projectile : MonoBehaviour {
 		}
 
 		//If bullet collides with "Zombie" tag
-		if (collision.transform.tag == "Zombie") 
+		if (collision.transform.tag == "Enemy") 
 		{
 			//Instantiate random impact prefab from array
 			Instantiate (bloodImpactPrefabs [Random.Range 
 				(0, bloodImpactPrefabs.Length)], transform.position, 
 				Quaternion.LookRotation (collision.contacts [0].normal));
 			//Get the zombie script from the collided object
-			Zombie zombie = collision.transform.gameObject.GetComponent<Zombie>();
+			Enemy enemy = collision.transform.gameObject.GetComponent<Enemy>();
 			//Call the "TakeDamage" function from the zombie script
-			if(zombie != null)
-				zombie.TakeDamage(damage);
+			if(enemy != null)
+				enemy.TakeDamage(damage);
 			//Destroy bullet object
 			Destroy(gameObject);
 		}

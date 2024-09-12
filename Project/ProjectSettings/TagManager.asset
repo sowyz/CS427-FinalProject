@@ -11,6 +11,7 @@ TagManager:
   - ExplosiveBarrel
   - Zombie
   - Blood
+  - Enemy
   layers:
   - Default
   - TransparentFX
