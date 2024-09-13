@@ -68,6 +68,12 @@ namespace InfimaGames.LowPolyShooterPack
         /// </summary>
         public abstract bool IsTutorialTextVisible();
 
+        public abstract bool IsHurt();
+
+        public abstract int GetHP();
+
+        public abstract int GetMaxHP();
+
         /// <summary>
         /// Returns the Movement Input.
         /// </summary>

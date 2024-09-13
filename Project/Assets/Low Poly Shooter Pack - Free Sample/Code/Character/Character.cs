@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 namespace InfimaGames.LowPolyShooterPack
 {
@@ -153,7 +154,14 @@ namespace InfimaGames.LowPolyShooterPack
 		/// </summary>
 		private bool cursorLocked;
 
-		public int health = 100;
+		private int health;
+		public int maxHealth = 100;
+
+		private bool isHit = false;
+
+		private bool isDead = false;
+
+		public GameObject hitEffect;
 
 		#endregion
 
@@ -192,6 +200,9 @@ namespace InfimaGames.LowPolyShooterPack
 
 			//Refresh!
 			RefreshWeaponSetup();
+
+			//Set Health
+			health = maxHealth;
 		}
 		protected override void Start()
 		{
@@ -206,12 +217,12 @@ namespace InfimaGames.LowPolyShooterPack
 		protected override void Update()
 		{
 			//Match Aim.
-			aiming = holdingButtonAim && CanAim();
+			aiming = holdingButtonAim && CanAim() && !isDead;
 			//Match Run.
-			running = holdingButtonRun && CanRun();
+			running = holdingButtonRun && CanRun() && !isDead;
 
 			//Holding the firing button.
-			if (holdingButtonFire)
+			if (holdingButtonFire && !isDead)
 			{
 				//Check.
 				if (CanPlayAnimationFire() && equippedWeapon.HasAmmunition() && equippedWeapon.IsAutomatic())
@@ -223,7 +234,8 @@ namespace InfimaGames.LowPolyShooterPack
 			}
 
 			//Update Animator.
-			UpdateAnimator();
+			if(!isDead)
+				UpdateAnimator();
 		}
 
 		protected override void LateUpdate()
@@ -256,12 +268,17 @@ namespace InfimaGames.LowPolyShooterPack
 		public override bool IsRunning() => running;
 		
 		public override bool IsAiming() => aiming;
-		public override bool IsCursorLocked() => cursorLocked;
-		
+		public override bool IsCursorLocked() => cursorLocked;		
 		public override bool IsTutorialTextVisible() => tutorialTextVisible;
 		
 		public override Vector3 GetInputMovement() => axisMovement;
 		public override Vector2 GetInputLook() => axisLook;
+
+		public override bool IsHurt() => isHit;
+
+		public override int GetHP() => health;
+
+		public override int GetMaxHP() => maxHealth;
 
 		#endregion
 
@@ -880,15 +897,59 @@ namespace InfimaGames.LowPolyShooterPack
 		#region HEALTH
 		public void TakeDamage(int damage)
 		{
+			//Damaged
 			health -= damage;
-			if (health <= 0)
+ 			if (health <= 0)
 			{
-				health = 0;
 				//Die
+				if(isDead == false)
+				{
+					isDead = true;
+					PlayerDeath();
+				}
 			}
 			else
 			{
-				//Damaged
+				StartCoroutine(ShowHitEffect());
+			}
+		}
+
+		private IEnumerator ShowHitEffect()
+		{
+			if( hitEffect.activeInHierarchy == false)
+			{
+				hitEffect.SetActive(true);			
+			}
+
+			var image = hitEffect.GetComponent<Image>();
+
+			// Set the initial alpha value to 1 (fully visible).
+			Color startColor = image.color;
+			startColor.a = 1f;
+			image.color = startColor;
+	
+			float duration = 2f;
+			float elapsedTime = 0f;
+	
+			while (elapsedTime < duration)
+			{
+				// Calculate the new alpha value using Lerp.
+				float alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+	
+				// Update the color with the new alpha value.
+				Color newColor = image.color;
+				newColor.a = alpha;
+				image.color = newColor;
+	
+				// Increment the elapsed time.
+				elapsedTime += Time.deltaTime;
+	
+				yield return null; ; // Wait for the next frame.
+			}
+
+			if (hitEffect.activeInHierarchy)
+			{
+				hitEffect.SetActive(false);
 			}
 		}
 
@@ -899,6 +960,19 @@ namespace InfimaGames.LowPolyShooterPack
 				TakeDamage(other.gameObject.GetComponent<ZombieAttack>().damage);
 			}
 		}
+
+		private void PlayerDeath()
+		{
+			//Disable the player's movement and camera look.
+			GetComponent<Movement>().enabled = false;
+			GetComponentInChildren<CameraLook>().enabled = false;
+			
+			//Disable the player's weapon.
+			equippedWeapon.gameObject.SetActive(false);
+			GetComponentInChildren<Inventory>().enabled = false;
+			GameObject.Find("Camera").GetComponent<Animator>().enabled = true;
+		}
+
 		#endregion
 
 		#endregion
