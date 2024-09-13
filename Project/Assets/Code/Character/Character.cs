@@ -282,6 +282,8 @@ namespace InfimaGames.LowPolyShooterPack
 
 		public override int GetMaxHP() => maxHealth;
 
+		public override bool IsDead() => isDead;
+
 		#endregion
 
 		#region METHODS
@@ -979,6 +981,9 @@ namespace InfimaGames.LowPolyShooterPack
 			equippedWeapon.gameObject.SetActive(false);
 			GetComponentInChildren<Inventory>().enabled = false;
 
+			//Disable the player's UI.
+			GlobalReference.Instance.playerUI.SetActive(false);
+
 			//Death Camera Animation
 			GameObject.Find("Camera").GetComponent<Animator>().enabled = true;
 
@@ -1006,7 +1011,7 @@ namespace InfimaGames.LowPolyShooterPack
 
 		private IEnumerator ReturnToMainMenu()
 		{
-			yield return new WaitForSeconds(5f);
+			yield return new WaitForSeconds(7f);
 			UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 		}
 

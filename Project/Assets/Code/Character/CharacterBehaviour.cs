@@ -70,6 +70,8 @@ namespace InfimaGames.LowPolyShooterPack
 
         public abstract bool IsHurt();
 
+        public abstract bool IsDead();
+
         public abstract int GetHP();
 
         public abstract int GetMaxHP();

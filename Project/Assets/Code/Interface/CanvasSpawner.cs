@@ -24,10 +24,11 @@ namespace InfimaGames.LowPolyShooterPack.Interface
         /// <summary>
         /// Awake.
         /// </summary>
-        private void Awake()
+        private void Start()
         {
             //Spawn Interface.
-            Instantiate(canvasPrefab);
+            GameObject canvas = Instantiate(canvasPrefab);
+            GlobalReference.Instance.playerUI = canvas;
         }
 
         #endregion

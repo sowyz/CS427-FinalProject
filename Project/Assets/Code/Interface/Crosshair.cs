@@ -59,7 +59,7 @@ namespace InfimaGames.LowPolyShooterPack.Interface
         protected override void Tick()
         {
             //Check Visibility.
-            bool visible = playerCharacter.IsCrosshairVisible();
+            bool visible = playerCharacter.IsCrosshairVisible() && !playerCharacter.IsDead();
             //Update Target.
             target = visible ? 1.0f : 0.0f;
 

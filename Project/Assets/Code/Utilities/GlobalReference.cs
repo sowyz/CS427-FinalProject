@@ -9,6 +9,8 @@ public class GlobalReference : MonoBehaviour
 
     public int waveSurvived;
 
+    public GameObject playerUI;
+
     private void Awake()
     {
         //Singleton
