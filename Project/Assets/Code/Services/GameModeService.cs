@@ -27,6 +27,11 @@ namespace InfimaGames.LowPolyShooterPack
             //Return.
             return playerCharacter;
         }
+
+        public EnemySpawner GetEnemySpawner()
+        {
+            return UnityEngine.Object.FindObjectOfType<EnemySpawner>();
+        }
         
         #endregion
     }

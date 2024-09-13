@@ -29,6 +29,8 @@ namespace InfimaGames.LowPolyShooterPack.Interface
         /// Equipped Weapon.
         /// </summary>
         protected WeaponBehaviour equippedWeapon;
+
+        protected EnemySpawner enemySpawner;
         
         #endregion
 
@@ -46,6 +48,8 @@ namespace InfimaGames.LowPolyShooterPack.Interface
             playerCharacter = gameModeService.GetPlayerCharacter();
             //Get Player Character Inventory.
             playerCharacterInventory = playerCharacter.GetInventory();
+
+            enemySpawner = gameModeService.GetEnemySpawner();
         }
         
         /// <summary>
