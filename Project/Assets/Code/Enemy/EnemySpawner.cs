@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public int enemiesPerWave = 5;
     public int currentEnemiesPerWave;
     public float timeBetweenWaves = 10f;
-    public int currentWave = 0;
+    public int currentWave = 1;
     public float timeBetweenEnemies = 0.5f;
     public GameObject enemyPrefab;
     public bool isCoolingDown = false;
@@ -33,8 +33,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void StartNewWave()
     {
-        currentEnemiesPerWave += currentWave;
-        currentWave++;
         enemiesAlive = new List<Enemy>();
         StartCoroutine(SpawnEnemies());
     }
@@ -95,6 +93,8 @@ public class EnemySpawner : MonoBehaviour
         isCoolingDown = true;
         yield return new WaitForSeconds(timeBetweenWaves);
         isCoolingDown = false;
+        currentEnemiesPerWave += currentWave;
+        currentWave++;
         StartNewWave();
     }
 }

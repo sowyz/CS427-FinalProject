@@ -24,7 +24,7 @@ namespace InfimaGames.LowPolyShooterPack.Interface
             }
             else
             {
-                textMesh.text = "Wave " + enemySpawner.currentWave;
+                textMesh.text = "Wave: " + enemySpawner.currentWave;
             }
             
         }

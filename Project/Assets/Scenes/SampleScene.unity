@@ -3090,7 +3090,7 @@ MonoBehaviour:
   enemiesPerWave: 5
   currentEnemiesPerWave: 0
   timeBetweenWaves: 10
-  currentWave: 0
+  currentWave: 1
   timeBetweenEnemies: 0.5
   enemyPrefab: {fileID: 4227931588877887336, guid: 14a7f8d6edf019f4c9c85eac16efec3d, type: 3}
   isCoolingDown: 0
