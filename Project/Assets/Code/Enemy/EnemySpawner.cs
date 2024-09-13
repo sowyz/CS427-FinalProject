@@ -28,11 +28,13 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         currentEnemiesPerWave = enemiesPerWave;
+        GlobalReference.Instance.waveSurvived = currentWave;
         StartNewWave();
     }
 
     private void StartNewWave()
     {
+        GlobalReference.Instance.waveSurvived = currentWave;
         enemiesAlive = new List<Enemy>();
         StartCoroutine(SpawnEnemies());
     }

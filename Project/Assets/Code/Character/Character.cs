@@ -996,7 +996,18 @@ namespace InfimaGames.LowPolyShooterPack
 		private IEnumerator ShowDeadMsg()
 		{
 			yield return new WaitForSeconds(1.5f);
+			int highScore = SaveLoadManager.Instance.LoadHighScore();
+			highScore = Mathf.Max(highScore, GlobalReference.Instance.waveSurvived - 1);
+			SaveLoadManager.Instance.SaveHighScore(highScore);
 			DeadMsg.SetActive(true);
+
+			StartCoroutine(ReturnToMainMenu());
+		}
+
+		private IEnumerator ReturnToMainMenu()
+		{
+			yield return new WaitForSeconds(5f);
+			UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 		}
 
 		#endregion
