@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateColor: 1
-  emptySpeed: 1.5
+  emptySpeed: 5
   emptyColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3954942930909197653
 GameObject:

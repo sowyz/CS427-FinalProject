@@ -898,9 +898,12 @@ namespace InfimaGames.LowPolyShooterPack
 		public void TakeDamage(int damage)
 		{
 			//Damaged
+			if(isDead)
+				return;
 			health -= damage;
  			if (health <= 0)
 			{
+				health = 0;
 				//Die
 				if(isDead == false)
 				{
@@ -971,6 +974,8 @@ namespace InfimaGames.LowPolyShooterPack
 			equippedWeapon.gameObject.SetActive(false);
 			GetComponentInChildren<Inventory>().enabled = false;
 			GameObject.Find("Camera").GetComponent<Animator>().enabled = true;
+
+			GetComponent<ScreenFadeOut>().StartFade();
 		}
 
 		#endregion

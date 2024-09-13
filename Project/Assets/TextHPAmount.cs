@@ -36,9 +36,9 @@ namespace InfimaGames.LowPolyShooterPack.Interface
         protected override void Tick()
         {
             //Current HP.
-            int current = playerCharacter.GetHP();
+            float current = playerCharacter.GetHP();
             //Total HP.
-            int total = playerCharacter.GetMaxHP();
+            float total = playerCharacter.GetMaxHP();
             
             //Update Text.
             textMesh.text = current.ToString(CultureInfo.InvariantCulture);
@@ -47,7 +47,7 @@ namespace InfimaGames.LowPolyShooterPack.Interface
             if (updateColor)
             {
                 //Calculate Color Alpha. Helpful to make the text color change based on count.
-                float colorAlpha = ((float)current / total) * emptySpeed;
+                float colorAlpha = (current / total) * emptySpeed;
                 //Lerp Color. This makes sure that the text color changes based on count.
                 textMesh.color = Color.Lerp(emptyColor, Color.white, colorAlpha);   
             }

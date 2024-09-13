@@ -774,6 +774,7 @@ GameObject:
   - component: {fileID: 7999892636887377833}
   - component: {fileID: 8284752836537985203}
   - component: {fileID: 4996666606683006699}
+  - component: {fileID: 4344113628633206780}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -931,7 +932,7 @@ MonoBehaviour:
   dampTimeLocomotion: 0.1
   dampTimeAiming: 0.3
   characterAnimator: {fileID: 3320314160785962872}
-  health: 100
+  maxHealth: 100
   hitEffect: {fileID: 0}
 --- !u!114 &8163229473432397683
 MonoBehaviour:
@@ -1249,6 +1250,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4344113628633206780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751027687307977091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43887da465bbb7140aa54ce2b45cece0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
+  fadeDuration: 7
 --- !u!1 &2906013363015915789
 GameObject:
   m_ObjectHideFlags: 0
