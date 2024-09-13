@@ -933,6 +933,7 @@ MonoBehaviour:
   dampTimeAiming: 0.3
   characterAnimator: {fileID: 3320314160785962872}
   maxHealth: 100
+  DeadMsg: {fileID: 0}
   hitEffect: {fileID: 0}
 --- !u!114 &8163229473432397683
 MonoBehaviour:
@@ -1263,7 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 0}
-  fadeDuration: 7
+  fadeDuration: 3
 --- !u!1 &2906013363015915789
 GameObject:
   m_ObjectHideFlags: 0

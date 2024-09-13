@@ -161,6 +161,8 @@ namespace InfimaGames.LowPolyShooterPack
 
 		private bool isDead = false;
 
+		public GameObject DeadMsg;
+
 		public GameObject hitEffect;
 
 		#endregion
@@ -900,6 +902,7 @@ namespace InfimaGames.LowPolyShooterPack
 			//Damaged
 			if(isDead)
 				return;
+
 			health -= damage;
  			if (health <= 0)
 			{
@@ -913,6 +916,8 @@ namespace InfimaGames.LowPolyShooterPack
 			}
 			else
 			{
+				//Play Hurt Sound
+				SoundManager.instance.playerAudioSource.PlayOneShot(SoundManager.instance.playerHurt);
 				StartCoroutine(ShowHitEffect());
 			}
 		}
@@ -973,9 +978,25 @@ namespace InfimaGames.LowPolyShooterPack
 			//Disable the player's weapon.
 			equippedWeapon.gameObject.SetActive(false);
 			GetComponentInChildren<Inventory>().enabled = false;
+
+			//Death Camera Animation
 			GameObject.Find("Camera").GetComponent<Animator>().enabled = true;
 
+			//Death Sound
+			SoundManager.instance.playerAudioSource.PlayOneShot(SoundManager.instance.playerDie);
+
+			SoundManager.instance.playerAudioSource.clip = SoundManager.instance.playerDieMusic;
+			SoundManager.instance.playerAudioSource.PlayDelayed(1.5f);
+
+			//Death Screen Fade
 			GetComponent<ScreenFadeOut>().StartFade();
+			StartCoroutine(ShowDeadMsg());
+		}
+
+		private IEnumerator ShowDeadMsg()
+		{
+			yield return new WaitForSeconds(1.5f);
+			DeadMsg.SetActive(true);
 		}
 
 		#endregion

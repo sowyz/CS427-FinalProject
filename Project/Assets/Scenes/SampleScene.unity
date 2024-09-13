@@ -205,6 +205,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21951901}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &48468244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5583024940548786720, guid: 65f9a5d6d51b70440a439f0a82b7dabf, type: 3}
+  m_PrefabInstance: {fileID: 883370600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &55348915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,6 +1283,10 @@ PrefabInstance:
     - target: {fileID: 2260687424230185751, guid: 65f9a5d6d51b70440a439f0a82b7dabf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500266200310828504, guid: 65f9a5d6d51b70440a439f0a82b7dabf, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8131988389822307446, guid: 65f9a5d6d51b70440a439f0a82b7dabf, type: 3}
       propertyPath: m_Name
@@ -3075,6 +3084,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 434113066, guid: 7af7ced551f47c446826630df616872d, type: 3}
+      propertyPath: DeadMsg
+      value: 
+      objectReference: {fileID: 48468244}
     - target: {fileID: 434113066, guid: 7af7ced551f47c446826630df616872d, type: 3}
       propertyPath: hitEffect
       value: 

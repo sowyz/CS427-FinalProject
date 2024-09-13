@@ -5,7 +5,15 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance { get; set; }
+    [Header("Player Sounds")]
+    public AudioSource playerAudioSource;
+    public AudioClip playerHurt;
+    public AudioClip playerDie;
+    
+    [Header("Music")]
+    public AudioClip playerDieMusic;
 
+    [Header("Zombie Sounds")]
     public AudioSource zombieAudioSource;
     public AudioClip zombieWalk;
     public AudioClip zombieAttack;
