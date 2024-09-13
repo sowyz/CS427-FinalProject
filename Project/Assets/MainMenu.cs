@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        // Unlock cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
         audioSource.clip = backgroundMusic;
         audioSource.Play();
         highScoreText.text = "Highest Wave Survived: " + SaveLoadManager.Instance.LoadHighScore();
