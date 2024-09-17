@@ -338,7 +338,7 @@ namespace InfimaGames.LowPolyShooterPack
 		{
 			#region Animation
 
-			if (equippedWeapon.GetAmmunitionHaving() == 0)
+			if (equippedWeapon.GetAmmunitionHaving() == 0 || equippedWeapon.IsFull())
 				return;
 
 			//Get the name of the animation state to play, which depends on weapon settings, and ammunition!
