@@ -797,6 +797,7 @@ GameObject:
   - component: {fileID: 8284752836537985203}
   - component: {fileID: 4996666606683006699}
   - component: {fileID: 4344113628633206780}
+  - component: {fileID: 4543756881079094623}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1187,6 +1188,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9beb2473-ee7d-4a54-857b-b42a64a66a65
     m_ActionName: Player/Lock Cursor[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 434113066}
+        m_TargetAssemblyTypeName: InfiniteZombies.Character, Assembly-CSharp
+        m_MethodName: OnTryInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a0a8f638-e16c-4c85-a714-d4e929147174
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1287,6 +1304,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 0}
   fadeDuration: 3
+--- !u!114 &4543756881079094623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751027687307977091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48a718a4805d984089782c0932ab7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 2
+  interactorSource: {fileID: 6864261471799679059}
 --- !u!1 &2906013363015915789
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,8 +1,6 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Handles all the animation events that come from the weapon in the asset.

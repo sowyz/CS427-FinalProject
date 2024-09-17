@@ -1,9 +1,7 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace InfimaGames.LowPolyShooterPack.Interface
+namespace InfiniteZombies.Interface
 {
     /// <summary>
     /// Weapon Image. Handles assigning the proper sprites to the weapon images.

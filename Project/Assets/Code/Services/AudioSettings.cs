@@ -1,8 +1,6 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Audio Settings used to interact with the AudioManagerService.

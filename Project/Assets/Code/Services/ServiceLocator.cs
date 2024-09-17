@@ -1,10 +1,9 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-//Implementation from: https://medium.com/medialesson/simple-service-locator-for-your-unity-project-40e317aad307
+﻿//Implementation from: https://medium.com/medialesson/simple-service-locator-for-your-unity-project-40e317aad307
 
 using System;
 using System.Collections.Generic;
 
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Simple service locator for <see cref="IGameService"/> instances.

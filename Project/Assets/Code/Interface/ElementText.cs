@@ -1,9 +1,7 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace InfimaGames.LowPolyShooterPack.Interface
+namespace InfiniteZombies.Interface
 {
     /// <summary>
     /// Text Interface Element.

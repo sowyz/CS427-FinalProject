@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+namespace InfiniteZombies
 {
-    public ZombieAttack zombieAttack;
-    public int damage;
-    // Start is called before the first frame update
-    void Start()
+    public class Zombie : MonoBehaviour
     {
-        damage = zombieAttack.damage;
-    }
+        public ZombieAttack zombieAttack;
+        public int damage;
+        // Start is called before the first frame update
+        void Start()
+        {
+            damage = zombieAttack.damage;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Update is called once per frame
+        void Update()
+        {
+            
+        }
     }
 }

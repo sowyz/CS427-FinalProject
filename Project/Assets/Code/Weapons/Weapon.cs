@@ -1,9 +1,7 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Weapon. This class handles most of the things that weapons need.
@@ -103,6 +101,8 @@ namespace InfimaGames.LowPolyShooterPack
         private int ammunitionCurrent;
 
         public int ammunitionHaving = 100;
+
+        public int maxAmmunitionHaving = 100;
 
         public int weaponDamage = 40;
 
@@ -270,6 +270,11 @@ namespace InfimaGames.LowPolyShooterPack
             //Spawn casing prefab at spawn point.
             if(prefabCasing != null && socketEjection != null)
                 Instantiate(prefabCasing, socketEjection.position, socketEjection.rotation);
+        }
+
+        public override void PickUpFullAmmo()
+        {
+            ammunitionHaving = maxAmmunitionHaving;
         }
 
         #endregion

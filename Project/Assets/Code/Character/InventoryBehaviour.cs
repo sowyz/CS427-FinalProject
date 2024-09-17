@@ -1,8 +1,6 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Abstract Inventory Class. Helpful so you can implement your own inventory system!
@@ -31,6 +29,8 @@ namespace InfimaGames.LowPolyShooterPack
         /// Returns the currently equipped index. Meaning the index in the weapon array of the equipped weapon.
         /// </summary>
         public abstract int GetEquippedIndex();
+
+        public abstract WeaponBehaviour[] GetWeapons();
         
         #endregion
         

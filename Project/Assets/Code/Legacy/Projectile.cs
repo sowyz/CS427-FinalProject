@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
-using InfimaGames.LowPolyShooterPack;
+using InfiniteZombies;
 using Random = UnityEngine.Random;
 
 public class Projectile : MonoBehaviour {

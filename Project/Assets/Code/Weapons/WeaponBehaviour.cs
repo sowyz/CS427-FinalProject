@@ -1,8 +1,6 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     public abstract class WeaponBehaviour : MonoBehaviour
     {
@@ -133,6 +131,8 @@ namespace InfimaGames.LowPolyShooterPack
         /// Ejects a casing from the weapon. This is commonly called from animation events, but can be called from anywhere.
         /// </summary>
         public abstract void EjectCasing();
+
+        public abstract void PickUpFullAmmo();
 
         #endregion
     }

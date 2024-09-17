@@ -3,57 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;   
 
-public class ZombieChasingState : StateMachineBehaviour
+namespace InfiniteZombies
 {
-    private Transform player;
-    private NavMeshAgent navMeshAgent;
-
-    public float chasingSpeed = 4f;
-    public float stopChasingRange = 18f;
-    public float attackingRange = 2.5f;
-
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class ZombieChasingState : StateMachineBehaviour
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        navMeshAgent = animator.GetComponent<NavMeshAgent>();
+        private Transform player;
+        private NavMeshAgent navMeshAgent;
 
-        navMeshAgent.speed = chasingSpeed;
-    }
+        public float chasingSpeed = 4f;
+        public float stopChasingRange = 18f;
+        public float attackingRange = 2.5f;
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        // Chase the player
-        navMeshAgent.SetDestination(player.position);
-        animator.transform.LookAt(player);
-
-        // Stop chasing
-        float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
-        if(distanceToPlayer > stopChasingRange)
+        // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.SetBool("isChasing", false);
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            navMeshAgent = animator.GetComponent<NavMeshAgent>();
+
+            navMeshAgent.speed = chasingSpeed;
         }
 
-        // Transition to Attacking State
-        if(distanceToPlayer <= attackingRange)
+        // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.SetBool("isAttacking", true);
+            // Chase the player
+            navMeshAgent.SetDestination(player.position);
+            animator.transform.LookAt(player);
+
+            // Stop chasing
+            float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
+            if(distanceToPlayer > stopChasingRange)
+            {
+                animator.SetBool("isChasing", false);
+            }
+
+            // Transition to Attacking State
+            if(distanceToPlayer <= attackingRange)
+            {
+                animator.SetBool("isAttacking", true);
+            }
+
+            // Play sound
+            if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+            {
+                SoundManager.instance.zombieAudioSource.PlayOneShot(SoundManager.instance.zombieChase);
+            }
         }
 
-        // Play sound
-        if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+        // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            SoundManager.instance.zombieAudioSource.PlayOneShot(SoundManager.instance.zombieChase);
+            // Stop moving
+            navMeshAgent.SetDestination(navMeshAgent.transform.position);
+
+            SoundManager.instance.zombieAudioSource.Stop();
         }
-    }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        // Stop moving
-        navMeshAgent.SetDestination(navMeshAgent.transform.position);
-
-        SoundManager.instance.zombieAudioSource.Stop();
     }
 }

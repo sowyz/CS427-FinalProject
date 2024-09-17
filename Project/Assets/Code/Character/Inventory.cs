@@ -1,8 +1,6 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     public class Inventory : InventoryBehaviour
     {
@@ -96,6 +94,8 @@ namespace InfimaGames.LowPolyShooterPack
 
         public override WeaponBehaviour GetEquipped() => equipped;
         public override int GetEquippedIndex() => equippedIndex;
+
+        public override WeaponBehaviour[] GetWeapons() => weapons;
 
         #endregion
     }

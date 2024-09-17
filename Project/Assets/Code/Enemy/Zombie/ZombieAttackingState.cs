@@ -3,49 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ZombieAttackingState : StateMachineBehaviour
+namespace InfiniteZombies
 {
-    private Transform player;
-    private NavMeshAgent navMeshAgent;
-
-    public float attackingRange = 2.5f;
-
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class ZombieAttackingState : StateMachineBehaviour
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        navMeshAgent = animator.GetComponent<NavMeshAgent>();
-    }
+        private Transform player;
+        private NavMeshAgent navMeshAgent;
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        LookAtPlayer();
+        public float attackingRange = 2.5f;
 
-        // Stop attacking
-        float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
-        if(distanceToPlayer > attackingRange)
+        // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            animator.SetBool("isAttacking", false);
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            navMeshAgent = animator.GetComponent<NavMeshAgent>();
         }
 
-        // Play sound
-        if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+        // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+        override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            SoundManager.instance.zombieAudioSource.PlayOneShot(SoundManager.instance.zombieAttack);
+            LookAtPlayer();
+
+            // Stop attacking
+            float distanceToPlayer = Vector3.Distance(animator.transform.position, player.position);
+            if(distanceToPlayer > attackingRange)
+            {
+                animator.SetBool("isAttacking", false);
+            }
+
+            // Play sound
+            if(SoundManager.instance.zombieAudioSource.isPlaying == false)
+            {
+                SoundManager.instance.zombieAudioSource.PlayOneShot(SoundManager.instance.zombieAttack);
+            }
         }
-    }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        SoundManager.instance.zombieAudioSource.Stop();
-    }
+        // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            SoundManager.instance.zombieAudioSource.Stop();
+        }
 
-    private void LookAtPlayer()
-    {
-        Vector3 direction = (player.position - navMeshAgent.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        navMeshAgent.transform.rotation = Quaternion.Slerp(navMeshAgent.transform.rotation, lookRotation, Time.deltaTime * 5f);
+        private void LookAtPlayer()
+        {
+            Vector3 direction = (player.position - navMeshAgent.transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            navMeshAgent.transform.rotation = Quaternion.Slerp(navMeshAgent.transform.rotation, lookRotation, Time.deltaTime * 5f);
+        }
     }
 }

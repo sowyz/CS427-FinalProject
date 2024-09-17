@@ -1,9 +1,7 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Manages the spawning and playing of sounds.

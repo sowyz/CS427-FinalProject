@@ -1,10 +1,8 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     [RequireComponent(typeof(Rigidbody), typeof(CharacterController))]
     public class Movement : MovementBehaviour

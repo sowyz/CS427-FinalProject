@@ -1,13 +1,11 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using System;
+﻿using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
 	/// <summary>
 	/// Main Character Component. This component handles the most important functions of the character, and interfaces
@@ -154,6 +152,8 @@ namespace InfimaGames.LowPolyShooterPack
 		/// </summary>
 		private bool cursorLocked;
 
+		private bool isInteracting;
+
 		private int health;
 		public int maxHealth = 100;
 
@@ -275,6 +275,7 @@ namespace InfimaGames.LowPolyShooterPack
 		
 		public override Vector3 GetInputMovement() => axisMovement;
 		public override Vector2 GetInputLook() => axisLook;
+		public override bool IsInteracting() => isInteracting;
 
 		public override bool IsHurt() => isHit;
 
@@ -856,6 +857,28 @@ namespace InfimaGames.LowPolyShooterPack
 			};
 		}
 
+		public void OnTryInteract(InputAction.CallbackContext context)
+		{
+			//Block while the cursor is unlocked.
+			if (!cursorLocked)
+				return;
+			
+			//Switch.
+			switch (context.phase)
+			{
+				//Started.
+				case InputActionPhase.Started:
+					//Start.
+					isInteracting = true;
+					break;
+				//Canceled.
+				case InputActionPhase.Canceled:
+					//Stop.
+					isInteracting = false;
+					break;
+			}
+		}
+
 		#endregion
 
 		#region ANIMATION EVENTS
@@ -994,7 +1017,7 @@ namespace InfimaGames.LowPolyShooterPack
 			SoundManager.instance.playerAudioSource.PlayDelayed(1.5f);
 
 			//Death Screen Fade
-			GetComponent<ScreenFadeOut>().StartFade();
+			GetComponent<Interface.ScreenFadeOut>().StartFade();
 			StartCoroutine(ShowDeadMsg());
 		}
 

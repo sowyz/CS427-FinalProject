@@ -1,8 +1,6 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace InfimaGames.LowPolyShooterPack
+namespace InfiniteZombies
 {
     /// <summary>
     /// Character Abstract Behaviour.
@@ -84,6 +82,8 @@ namespace InfimaGames.LowPolyShooterPack
         /// Returns the Look Input.
         /// </summary>
         public abstract Vector2 GetInputLook();
+
+        public abstract bool IsInteracting();
         
         #endregion
 

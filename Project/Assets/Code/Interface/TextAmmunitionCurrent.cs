@@ -1,9 +1,7 @@
-﻿// Copyright 2021, Infima Games. All Rights Reserved.
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Globalization;
 
-namespace InfimaGames.LowPolyShooterPack.Interface
+namespace InfiniteZombies.Interface
 {
     /// <summary>
     /// Current Ammunition Text.
