@@ -790,9 +790,9 @@ GameObject:
   - component: {fileID: 2748913124992463393}
   - component: {fileID: 6219025921223107655}
   - component: {fileID: 448958757}
-  - component: {fileID: 434113066}
   - component: {fileID: 8163229473432397683}
   - component: {fileID: 601192529242639950}
+  - component: {fileID: 434113066}
   - component: {fileID: 7999892636887377833}
   - component: {fileID: 8284752836537985203}
   - component: {fileID: 4996666606683006699}
@@ -938,26 +938,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1048576
---- !u!114 &434113066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2751027687307977091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cedea47162792a74cb9ec77109d20e72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventory: {fileID: 8195332293463410009}
-  cameraWorld: {fileID: 916095938892669238}
-  dampTimeLocomotion: 0.1
-  dampTimeAiming: 0.3
-  characterAnimator: {fileID: 3320314160785962872}
-  maxHealth: 100
-  DeadMsg: {fileID: 0}
-  hitEffect: {fileID: 0}
 --- !u!114 &8163229473432397683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,11 +1184,47 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a0a8f638-e16c-4c85-a714-d4e929147174
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 434113066}
+        m_TargetAssemblyTypeName: InfiniteZombies.Character, Assembly-CSharp
+        m_MethodName: OnUpdateTutorial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c87aacc1-89f8-44bf-9641-837a2be6be4a
+    m_ActionName: Player/Tutorial[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &434113066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751027687307977091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedea47162792a74cb9ec77109d20e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 8195332293463410009}
+  cameraWorld: {fileID: 916095938892669238}
+  dampTimeLocomotion: 0.1
+  dampTimeAiming: 0.3
+  characterAnimator: {fileID: 3320314160785962872}
+  maxHealth: 100
+  DeadMsg: {fileID: 0}
+  hitEffect: {fileID: 0}
 --- !u!114 &7999892636887377833
 MonoBehaviour:
   m_ObjectHideFlags: 0
